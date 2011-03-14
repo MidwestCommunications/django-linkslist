@@ -1,11 +1,21 @@
 from django import forms
 from django.conf import settings
+from django.core.cache import cache
+
+
 from linkslist.models import LinksListItem
 from photologue.models import Photo
-from ajax_filtered_fields.forms import ForeignKeyByLetter
+from tagging.models import TaggedItem
+
+
+linkslist_photos = cache.get('linkslist_photos')
+if not linkslist_photos:
+    linklist_photos = TaggedItem.objects.get_by_model(Photo, 'linkslist')
+    cache.set('linkslist_photos', linkslist_photos, 5)
+
 
 class LinksListItemAdminForm(forms.ModelForm):
-    photo = ForeignKeyByLetter(Photo, field_name="title", required=False)
+    photo = forms.ModelChoiceField(queryset=linklist_photos)
     
     class Meta:
         model = LinksListItem
