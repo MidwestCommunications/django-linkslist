@@ -15,7 +15,7 @@ if not linkslist_photos:
 
 
 class LinksListItemAdminForm(forms.ModelForm):
-    photo = forms.ModelChoiceField(queryset=linklist_photos)
+    photo = forms.ModelChoiceField(queryset=linklist_photos, required=False)
     
     class Meta:
         model = LinksListItem
