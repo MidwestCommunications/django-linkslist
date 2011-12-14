@@ -10,7 +10,7 @@ from tagging.models import TaggedItem
 
 linkslist_photos = cache.get('linkslist_photos')
 if not linkslist_photos:
-    linklist_photos = TaggedItem.objects.get_by_model(Photo, 'linkslist')
+    linklist_photos = TaggedItem.objects.get_by_model(Photo, 'linkslist').order_by('title')
     cache.set('linkslist_photos', linkslist_photos, 5)
 
 
