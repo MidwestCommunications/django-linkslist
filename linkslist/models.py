@@ -13,7 +13,7 @@ class LinksList(models.Model):
     
     class Meta:
         unique_together = (('title', 'site',), ('key', 'site',),)
-        ordering = ('title',)
+        ordering = ('site__name','title')
     
     def __unicode__(self):
         return '%s links list on %s' % (self.title, self.site.name)
