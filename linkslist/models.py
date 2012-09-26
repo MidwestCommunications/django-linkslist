@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.sites.models import Site
 from django.contrib.sites.managers import CurrentSiteManager
+
 from photologue.models import Photo
 
 class LinksList(models.Model):
@@ -9,7 +10,6 @@ class LinksList(models.Model):
     site = models.ForeignKey(Site)
     
     objects = models.Manager()
-    on_site = CurrentSiteManager('site',) 
     
     class Meta:
         unique_together = (('title', 'site',), ('key', 'site',),)
