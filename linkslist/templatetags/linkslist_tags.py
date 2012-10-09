@@ -5,10 +5,10 @@ from django.contrib.sites.models import Site
 from linkslist.models import LinksList
 
 register = template.Library()
-current_site = Site.objects.get_current()
 
 @register.inclusion_tag('linkslist/slider.html')
 def slider(key):
+    current_site = Site.objects.get_current()
     try:
         slider = LinksList.objects.get(site=current_site, key=key)
     except:
