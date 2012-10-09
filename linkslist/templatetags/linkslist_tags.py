@@ -34,6 +34,7 @@ def slider_js():
     
 @register.inclusion_tag('linkslist/simplelist.html')
 def simplelist(key):
+    current_site = Site.objects.get_current()
     try:
         simplelist = LinksList.objects.get(site=current_site, key=key)
     except:
