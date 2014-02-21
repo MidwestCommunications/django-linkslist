@@ -21,7 +21,7 @@ class LinksList(models.Model):
 class LinksListItem(models.Model):
     links_list = models.ForeignKey(LinksList)
     photo = models.ForeignKey(Photo, blank=True, null=True)
-    link = models.URLField(verify_exists=False)
+    link = models.URLField()
     description = models.CharField(max_length=160, blank=True)
     order = models.PositiveSmallIntegerField()
     
